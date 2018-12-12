@@ -4,3 +4,12 @@
     padding-top: 50px;
   }
 }
+
+.main-content {
+  padding-left: 340px;
+  box-sizing: border-box;
+  position: relative;
+  height: auto;
+}
+
+

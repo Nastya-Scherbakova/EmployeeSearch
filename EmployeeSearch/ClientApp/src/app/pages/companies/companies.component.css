@@ -1,0 +1,46 @@
+.company-row{
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin: 5px;
+  padding: 20px;
+  border-radius: 4px;
+  color: black;
+  opacity: .8;
+  font-family: "Raleway";
+  max-width: 400px;
+  height: 100px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+  .company-row:hover {
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+    opacity: 1;
+  }
+  .company-row > i {
+    font-size: 20px;
+    max-width: 40px;
+    line-height: 60px;
+  }
+.company-title{
+  height: 100%;
+}
+
+.company-contacts {
+  font-family: "Raleway";
+  font-size: 12px;
+
+  color: #777;
+}
+
+.search-field{
+  width: 100%;
+  padding: 0 200px 0 100px;
+}
+
+.companies-content {
+  padding-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

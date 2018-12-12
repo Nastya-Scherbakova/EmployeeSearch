@@ -1,0 +1,33 @@
+
+<div class="companies-content">
+  
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div class="company-row" *ngIf="!loading">
+    <div class="row">
+      <i class="col-sm-2 ti-world"></i>
+      <div class="col company-title">
+        {{company.title}}
+        <div class="company-contacts"><i class="ti-email"></i>  {{company.email}}</div>
+        <div class="company-contacts"><i class="ti-mobile"></i>  {{company.number}}</div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col">
+        
+
+        <h5 class="jumbotron small-jumb">Vacancies <i class="ti-clipboard"></i></h5>
+        <div class="vacancies-list">
+          <div class="vacancy-item" *ngFor="let vacancy of company.vacancies">
+            {{vacancy.position}}
+            <mat-divider></mat-divider>
+          </div>
+
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+

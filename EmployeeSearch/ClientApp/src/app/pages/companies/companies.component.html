@@ -1,0 +1,18 @@
+
+<div class="companies-content">
+  <mat-form-field class="search-field">
+    <input matInput placeholder="Search company" [ngModel]="search" (ngModelChange)="filterCompanies($event)">
+  </mat-form-field>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div *ngFor="let company of filteredCompanies" class="row company-row" [routerLink]="'/company/' + company.id">
+    <i class="col-sm-2 ti-world"></i>
+    <div class="col company-title">
+      {{company.title}}
+      <div class="company-contacts"><i class="ti-email"></i>  {{company.email}}</div>
+      <div class="company-contacts"><i class="ti-mobile"></i>  {{company.number}}</div>
+    </div>
+
+
+  </div>
+</div>
+

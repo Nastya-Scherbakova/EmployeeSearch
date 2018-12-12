@@ -1,0 +1,22 @@
+
+<div class="companies-content">
+  <mat-form-field class="search-field">
+    <input matInput placeholder="Search vacancy" [ngModel]="search" (ngModelChange)="filterVacancies($event)">
+  </mat-form-field>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div *ngFor="let vacancy of filteredVacancies" class="row company-row" [routerLink]="'/vacancy/' + vacancy.id">
+    <i class="col-sm-2 ti-clipboard"></i>
+    <div class="col company-title">
+      {{vacancy.position}}
+      <div class="company-contacts"><i class="ti-money"></i>  {{vacancy.salary}}</div>
+      <div class="company-contacts">
+        <i class="ti-check" *ngIf="vacancy.socialPackage"></i>
+        <i class="ti-close" *ngIf="!vacancy.socialPackage"></i>
+        social package
+      </div>
+    </div>
+
+
+  </div>
+</div>
+

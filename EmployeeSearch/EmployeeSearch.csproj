@@ -15,6 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,38 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\assets\.gitkeep" />
+    <Content Remove="wwwroot\assets\image2vector.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\models\company.model.ts" />
+    <None Remove="ClientApp\src\app\models\cv.model.ts" />
+    <None Remove="ClientApp\src\app\models\directory.model.ts" />
+    <None Remove="ClientApp\src\app\models\opportunity.model.ts" />
+    <None Remove="ClientApp\src\app\models\person.model.ts" />
+    <None Remove="ClientApp\src\app\models\requirment.model.ts" />
+    <None Remove="ClientApp\src\app\models\vacancy.model.ts" />
+    <None Remove="ClientApp\src\app\services\api.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\.gitkeep" />
+    <None Include="wwwroot\assets\image2vector.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\company.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\cv.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\directory.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\opportunity.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\person.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\requirment.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\vacancy.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\api.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -1,0 +1,78 @@
+.company-row{
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  border-radius: 4px;
+  color: black;
+  opacity: .8;
+  font-family: "Raleway";
+  height: calc(100vh - 100px);
+  width: 100%;
+  background: #fafafa;
+  margin: 5px 50px;
+  transition: all 0.3s;
+}
+
+  .company-row:hover {
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+    opacity: 1;
+  }
+  .company-row .ti-world {
+    font-size: 20px;
+    max-width: 40px;
+    line-height: 60px;
+  }
+.company-title{
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.company-contacts {
+  font-family: "Raleway";
+  font-size: 14px;
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  color: #777;
+}
+
+.search-field{
+  width: 100%;
+  padding: 0 200px 0 100px;
+}
+
+.companies-content {
+  padding-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.small-jumb {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  opacity: .6;
+  margin: 0;
+}
+
+.vacancies-list {
+  overflow: auto;
+  max-height: calc(100% - 50px);
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-bottom-left-radius: 10px;
+  background: white;
+  border-bottom-right-radius: 10px;
+}
+
+.vacancy-item{
+  height: 100px;
+  width: 100%;
+  padding: 20px;
+}
+
+.vacancy-item mat-divider{
+ // max-width: 400px;
+}

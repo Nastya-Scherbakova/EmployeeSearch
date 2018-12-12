@@ -1,0 +1,18 @@
+
+<div class="companies-content">
+  <mat-form-field class="search-field">
+    <input matInput placeholder="Search person" [ngModel]="search" (ngModelChange)="filterPeople($event)">
+  </mat-form-field>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div *ngFor="let person of filteredPeople" class="row company-row" [routerLink]="'/person/' + person.id">
+    <i class="col-sm-2 ti-user"></i>
+    <div class="col company-title">
+      {{person.name}} {{person.lastName}}
+      <div class="company-contacts"><i class="ti-email"></i>  {{person.email}}</div>
+      <div class="company-contacts"><i class="ti-mobile"></i>  {{person.number}}</div>
+    </div>
+
+
+  </div>
+</div>
+

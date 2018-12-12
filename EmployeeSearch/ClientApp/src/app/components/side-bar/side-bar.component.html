@@ -1,0 +1,9 @@
+<div class="side-bar">
+  <div>
+    <div class="side-bar-logo"></div>
+    <div *ngFor="let item of menuItems" class="side-bar-item" [routerLink]="item.link"
+         [ngClass]="{'selected': item.link == currentItem}" (click)="changeRoad(item.link)">
+      {{item.title}}
+    </div>
+  </div>
+</div>
