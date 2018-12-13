@@ -16,11 +16,13 @@
     box-shadow: 0 5px 12px rgba(0,0,0,0.15);
     opacity: 1;
   }
-  .company-row .ti-world {
+  .company-row .col-sm-2 {
     font-size: 20px;
-    max-width: 40px;
     line-height: 60px;
   }
+.col-sm-2 button {
+  max-width: 40px;
+}
 .company-title{
   height: 100px;
   display: flex;
@@ -59,7 +61,7 @@
 
 .vacancies-list {
   overflow: auto;
-  max-height: calc(100% - 50px);
+  max-height: 490px;
   width: 100%;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-bottom-left-radius: 10px;
@@ -68,11 +70,27 @@
 }
 
 .vacancy-item{
-  height: 100px;
+  min-height: 100px;
   width: 100%;
-  padding: 20px;
+  padding: 20px 20px 0 20px;
+  cursor: pointer;
+}
+small {
+  display: block;
+  padding: 10px 0;
+  color: rgba(0,0,0,0.8);
 }
 
-.vacancy-item mat-divider{
- // max-width: 400px;
+.requir-item{
+  display: inline-block;
+  padding: 5px 10px;
+  background: #8c97cc;
+  border-radius: 10px;
+  margin: 5px;
+  color: white;
 }
+  .requir-item span {
+    background: #6b4fde;
+    border-radius: 50%;
+    padding: 3px 10px 6px 10px;
+  }

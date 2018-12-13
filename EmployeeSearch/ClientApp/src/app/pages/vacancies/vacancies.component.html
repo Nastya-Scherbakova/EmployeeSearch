@@ -3,6 +3,7 @@
   <mat-form-field class="search-field">
     <input matInput placeholder="Search vacancy" [ngModel]="search" (ngModelChange)="filterVacancies($event)">
   </mat-form-field>
+  <button mat-button (click)="openDialog()">Add vacancy</button>
   <mat-spinner *ngIf="loading"></mat-spinner>
   <div *ngFor="let vacancy of filteredVacancies" class="row company-row" [routerLink]="'/vacancy/' + vacancy.id">
     <i class="col-sm-2 ti-clipboard"></i>

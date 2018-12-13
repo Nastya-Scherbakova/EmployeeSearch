@@ -45,3 +45,8 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+button {
+  width: 100%;
+  margin: 0 50px;
+}

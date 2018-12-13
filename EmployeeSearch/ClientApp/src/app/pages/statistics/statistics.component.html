@@ -1,0 +1,26 @@
+
+<div class="companies-content">
+  <h3 class="jumbotron small-jumb">Diagram of companies and vacancies</h3>
+  <div *ngIf="!loading">
+    <canvas mdbChart
+            [chartType]="chartType"
+            [datasets]="chartDatasets"
+            [labels]="chartLabels"
+            [options]="chartOptions"
+            [legend]="true"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+  <h3 class="jumbotron small-jumb">Diagram of people and two directories that they have the most experience in</h3>
+  <div *ngIf="!loading">
+    <canvas mdbChart
+            [chartType]="chartTypePersons"
+            [datasets]="chartDatasetsPersons"
+            [labels]="chartLabelsPersons"
+            [options]="chartOptions"
+            [legend]="true"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
+</div>
+

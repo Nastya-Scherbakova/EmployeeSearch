@@ -1,18 +1,63 @@
 
 <div class="companies-content">
-  <mat-form-field class="search-field">
-    <input matInput placeholder="Search company" [ngModel]="search" (ngModelChange)="filterCompanies($event)">
-  </mat-form-field>
+
   <mat-spinner *ngIf="loading"></mat-spinner>
-  <div *ngFor="let company of filteredCompanies" class="row company-row">
-    <i class="col-sm-2 ti-world"></i>
-    <div class="col company-title">
-      {{company.title}}
-      <div class="company-contacts"><i class="ti-email"></i>  {{company.email}}</div>
-      <div class="company-contacts"><i class="ti-mobile"></i>  {{company.number}}</div>
+  <div class="company-row" *ngIf="!loading">
+    <div class="row">
+      <i class="col-sm-2 ti-clipboard"></i>
+      <div class="col company-title">
+        {{vacancy.position}}
+        <div class="company-contacts"><i class="ti-money"></i> {{vacancy.salary}}</div>
+        <div class="company-contacts">
+          <i class="ti-check" *ngIf="vacancy.socialPackage"></i>
+          <i class="ti-close" *ngIf="!vacancy.socialPackage"></i>
+          Social package
+        </div>
+        <div class="requir-item" *ngFor="let requirment of vacancy.requirments">
+          {{requirment.directory.name}} <span>{{requirment.quantity}}</span>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <button mat-button (click)="openDialog()"><i class="ti-pencil"></i></button>
+        <button mat-button (click)="deleteVacancy()"><i class="ti-trash"></i></button>
+      </div>
+      
     </div>
 
+    <div class="row">
+      <div class="col">
+
+
+        <h5 class="jumbotron small-jumb">Candidates <i class="ti-user"></i></h5>
+        <mat-spinner *ngIf="loadingCandidates"></mat-spinner>
+        <div class="vacancies-list" *ngIf="!loadingCandidates">
+          <span *ngIf="candidates.length==0">No such candidates that are suits for this vacancy for now, sorry </span>
+          <div class="vacancy-item" *ngFor="let candidate of candidates" [routerLink]="'/person/'+candidate.id">
+            <div class="row">
+              <div class="col">
+                {{candidate.name}} {{candidate.lastName}}
+                <small>Prefered salary ${{candidate.cv.salary}}</small>
+                <small>
+                  Prefered position: {{candidate.cv.position}}
+                </small>
+              </div>
+              <div class="col">
+                <div class="requir-item" *ngFor="let opportunity of candidate.cv.opportunities">
+                  {{opportunity.directory.name}} <span>{{opportunity.quantity}}</span>
+                </div>
+              </div>
+            </div>
+
+            <mat-divider></mat-divider>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </div>
+
+
 

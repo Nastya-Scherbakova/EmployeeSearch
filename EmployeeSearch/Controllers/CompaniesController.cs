@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EmployeeSearch.Models;
@@ -82,6 +80,8 @@ namespace EmployeeSearch.Controllers
         [HttpPost]
         public async Task<ActionResult<Company>> PostCompany(Company company)
         {
+            var lastEl = await _context.Companies.LastAsync();
+            company.Id = lastEl.Id+1;
             _context.Companies.Add(company);
             await _context.SaveChangesAsync();
 

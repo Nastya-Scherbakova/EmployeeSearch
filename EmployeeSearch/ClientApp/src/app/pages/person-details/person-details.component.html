@@ -1,17 +1,68 @@
 
 <div class="companies-content">
-  <mat-form-field class="search-field">
-    <input matInput placeholder="Search company" [ngModel]="search" (ngModelChange)="filterCompanies($event)">
-  </mat-form-field>
+
   <mat-spinner *ngIf="loading"></mat-spinner>
-  <div *ngFor="let company of filteredCompanies" class="row company-row">
-    <i class="col-sm-2 ti-world"></i>
-    <div class="col company-title">
-      {{company.title}}
-      <div class="company-contacts"><i class="ti-email"></i>  {{company.email}}</div>
-      <div class="company-contacts"><i class="ti-mobile"></i>  {{company.number}}</div>
+  <div class="company-row" *ngIf="!loading">
+    <div class="row">
+      <i class="col-sm-2 ti-user"></i>
+      <div class="col company-title">
+        {{person.name}} {{person.lastName}}
+        <div class="company-contacts"><i class="ti-money"></i> {{person.cv.salary}}</div>
+        <div class="company-contacts">
+          {{person.cv.position}}
+
+        </div>
+        <div class="company-contacts">
+          <i class="ti-mobile"></i> {{person.number}}
+        </div>
+        <div class="company-contacts">
+          <i class="ti-email"></i> {{person.email}}
+        </div>
+
+        <div class="requir-item" *ngFor="let opportunity of person.cv.opportunities">
+          {{opportunity.directory.name}} <span>{{opportunity.quantity}}</span>
+        </div>
+      </div>
+      <div class="col-sm-2">
+        <button  mat-button (click)="openDialog()"><i class="ti-pencil"></i></button>
+        <button  mat-button (click)="deletePerson()"><i class="ti-trash"></i></button>
+      </div>
+      
     </div>
 
+    <div class="row">
+      <div class="col">
+
+
+        <h5 class="jumbotron small-jumb">Vacancies <i class="ti-clipboard"></i></h5>
+        <mat-spinner *ngIf="loadingVacancies"></mat-spinner>
+        <div class="vacancies-list" *ngIf="!loadingVacancies">
+          <span *ngIf="vacancies.length==0">No such vacancies that are suits for this candidate for now, sorry </span>
+          <div class="vacancy-item" *ngFor="let vacancy of vacancies" [routerLink]="'/vacancy/'+vacancy.id">
+            <div class="row">
+              <div class="col">
+                {{vacancy.position}}
+                <small>Salary ${{vacancy.salary}}</small>
+                <small>
+                  <i class="ti-check" *ngIf="vacancy.socialPackage"></i>
+                  <i class="ti-close" *ngIf="!vacancy.socialPackage"></i>
+                  social package
+                </small>
+              </div>
+              <div class="col">
+                <div class="requir-item" *ngFor="let requirment of vacancy.requirments">
+                  {{requirment.directory.name}} <span>{{requirment.quantity}}</span>
+                </div>
+              </div>
+            </div>
+
+            <mat-divider></mat-divider>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </div>

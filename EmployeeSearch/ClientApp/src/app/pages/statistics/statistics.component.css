@@ -24,6 +24,15 @@
     line-height: 60px;
   }
 
+.small-jumb {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  opacity: .6;
+  margin: 0;
+  margin-top: 10px;
+}
+
 .company-title {
   height: 100%;
 }
@@ -41,10 +50,6 @@
 
 .companies-content {
   padding-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
 }
 
 button {

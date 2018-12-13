@@ -24,6 +24,10 @@ export class SideBarComponent implements OnInit{
     {
       title:'Vacancies',
       link:'/vacancies'
+    },
+    {
+      title:'Statistics',
+      link:'/statistics'
     }
     ];
   currentItem: string;

@@ -10,6 +10,11 @@
         <div class="company-contacts"><i class="ti-email"></i>  {{company.email}}</div>
         <div class="company-contacts"><i class="ti-mobile"></i>  {{company.number}}</div>
       </div>
+      <div class="col-sm-2">
+        <button mat-button (click)="openDialog()"><i class="ti-pencil"></i></button>
+        <button mat-button (click)="deleteCompany()"><i class="ti-trash"></i></button>
+      </div>
+      
     </div>
     
     <div class="row">
@@ -18,8 +23,25 @@
 
         <h5 class="jumbotron small-jumb">Vacancies <i class="ti-clipboard"></i></h5>
         <div class="vacancies-list">
-          <div class="vacancy-item" *ngFor="let vacancy of company.vacancies">
-            {{vacancy.position}}
+          <span *ngIf="company.vacancies.length==0">Company doesn't have vacancies </span>
+          <div class="vacancy-item" *ngFor="let vacancy of company.vacancies" [routerLink]="'/vacancy/'+vacancy.id">
+            <div class="row">
+              <div class="col">
+                {{vacancy.position}}
+                <small>Salary ${{vacancy.salary}}</small>
+                <small>
+                  <i class="ti-check" *ngIf="vacancy.socialPackage"></i>
+                  <i class="ti-close" *ngIf="!vacancy.socialPackage"></i>
+                  Social package
+                </small>
+              </div>
+              <div class="col">
+                <div class="requir-item" *ngFor="let requirment of vacancy.requirments">
+                  {{requirment.directory.name}} <span>{{requirment.quantity}}</span>
+                </div>
+              </div>
+            </div>
+
             <mat-divider></mat-divider>
           </div>
 

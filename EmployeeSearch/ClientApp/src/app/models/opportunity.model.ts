@@ -7,5 +7,5 @@ export class Opportunity {
   public directoryId: number;
   public cVId: number;
   public directory: Directory;
-  public CV: CV;
+  public cv: CV;
 }

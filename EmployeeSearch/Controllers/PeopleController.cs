@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EmployeeSearch.Models;
@@ -31,8 +29,10 @@ namespace EmployeeSearch.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Person>> GetPerson(int id)
         {
-            var person = await _context.Persons.AsNoTracking().Include("CV.Opportunities.Directory").SingleOrDefaultAsync(el=>el.Id == id);
-            foreach(var opp in person.CV.Opportunities)
+            var person = await _context.Persons.AsNoTracking().Include("CV.Opportunities.Directory")
+                .SingleOrDefaultAsync(el => el.Id == id);
+            person.CV.Person = null;
+            foreach (var opp in person.CV.Opportunities)
             {
                 opp.CV = null;
             }
@@ -43,6 +43,46 @@ namespace EmployeeSearch.Controllers
             }
 
             return person;
+        }
+
+        // GET: api/People/5
+        [HttpGet("{id}/Vacancies")]
+        public async Task<ActionResult<IEnumerable<Vacancy>>> GetPersonVacancies(int id)
+        {
+            var person = await _context.Persons.AsNoTracking().Include("CV.Opportunities.Directory")
+                .SingleOrDefaultAsync(el => el.Id == id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+            person.CV.Person = null;
+            foreach (var opp in person.CV.Opportunities)
+            {
+                opp.CV = null;
+            }
+            var source = _context.Vacancies.Include("Requirments.Directory");
+            IQueryable<Vacancy> queryVacancies;
+
+            if (person.CV.Opportunities.Count > 0)
+            {
+                queryVacancies = from p in source
+                                 from req in p.Requirments
+                                 from op in person.CV.Opportunities
+                                 where req.Directory.Id == op.Directory.Id && req.Quantity <= op.Quantity + 1
+                                 select p;
+            }
+            else queryVacancies = source.Where(el => el.Salary + 500 >= person.CV.Salary);
+            var vacancies = await queryVacancies.ToListAsync();
+            foreach (var vac in vacancies)
+            {
+                foreach (var req in vac.Requirments)
+                {
+                    req.Vacancy = null;
+                }
+            }
+
+
+            return vacancies;
         }
 
         // PUT: api/People/5
@@ -79,6 +119,8 @@ namespace EmployeeSearch.Controllers
         [HttpPost]
         public async Task<ActionResult<Person>> PostPerson(Person person)
         {
+            var lastEl = await _context.Persons.LastAsync();
+            person.Id = lastEl.Id+1;
             _context.Persons.Add(person);
             await _context.SaveChangesAsync();
 

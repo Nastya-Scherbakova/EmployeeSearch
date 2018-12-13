@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\dialogs\data.dialog.ts" />
     <None Remove="ClientApp\src\app\models\company.model.ts" />
     <None Remove="ClientApp\src\app\models\cv.model.ts" />
     <None Remove="ClientApp\src\app\models\directory.model.ts" />
@@ -47,6 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\dialogs\data\data.dialog.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\company.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\cv.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\directory.model.ts" />

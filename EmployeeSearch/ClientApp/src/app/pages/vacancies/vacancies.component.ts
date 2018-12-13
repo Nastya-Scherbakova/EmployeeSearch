@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Vacancy } from 'src/app/models/vacancy.model';
 import { ApiService } from 'src/app/services/api.service';
+import { DataDialog } from 'src/app/dialogs/data/data.dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-vacancies',
@@ -12,8 +14,24 @@ export class VacanciesComponent implements OnInit{
   loading: boolean;
   search: string;
   filteredVacancies: Array<Vacancy>;
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, public dialog: MatDialog) {
     this.loading = true;
+  }
+
+  openDialog() {
+    let vacancy = new Vacancy();
+    const dialogRef = this.dialog.open(DataDialog, {
+      width: '500px',
+      data: vacancy
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.api.addVacancy(result).subscribe(()=>this.loadVacancies());
+        
+      }
+      
+    });
   }
 
   filterVacancies(value) {
@@ -26,6 +44,11 @@ export class VacanciesComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.loadVacancies();
+  }
+
+  loadVacancies() {
+    this.loading = true;
     this.api.getVacancies().subscribe((vacancies) => {
       this.vacancies = vacancies;
       this.filteredVacancies = vacancies;

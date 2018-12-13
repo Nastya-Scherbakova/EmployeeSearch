@@ -3,6 +3,7 @@
   <mat-form-field class="search-field">
     <input matInput placeholder="Search person" [ngModel]="search" (ngModelChange)="filterPeople($event)">
   </mat-form-field>
+  <button mat-button (click)="openDialog()">Add person</button>
   <mat-spinner *ngIf="loading"></mat-spinner>
   <div *ngFor="let person of filteredPeople" class="row company-row" [routerLink]="'/person/' + person.id">
     <i class="col-sm-2 ti-user"></i>

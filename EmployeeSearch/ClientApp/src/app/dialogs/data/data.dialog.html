@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+  <div *ngFor="let field of fields">
+    <mat-form-field *ngIf="field.type!='boolean'">
+      <input matInput [(ngModel)]="data[field.name]" placeholder="{{field.name}}">
+    </mat-form-field>
+    <mat-slide-toggle  *ngIf="field.type=='boolean'" [(ngModel)]="data[field.name]">{{field.name}}</mat-slide-toggle>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
